@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        {% for question in questions %}
+            <h1>{{question.title}}</h1>
+            <br>
+            <h2>{{question.question_desc}}</h2>
+            <br>
+            <img src="../../media/{{question.question_img}}" alt="">
+        {% endfor %}
+    </body>
+</html>
