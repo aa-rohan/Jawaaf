@@ -3,9 +3,18 @@ from django.db import models
 # Create your models here.
 
 
+class CategoryModel(models.Model):
+    title = models.CharField(max_length=255)
+    cat_desc = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
+
+
 class QuestionModel(models.Model):
     title = models.CharField(max_length=255)
     posted_by = models.CharField(max_length=120)
+    category = models.ForeignKey(CategoryModel, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     question_desc = models.TextField()
     question_votes = models.IntegerField(default=0)
