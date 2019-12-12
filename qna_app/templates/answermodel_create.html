@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <form class="" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            Name: <input type="text" name="answered_by" value=""><br><br>
+            Answer: <input type="text" name="answer_desc" value=""><br><br>
+            Image: <input type="file" name="answer_img" value=""><br><br>
+            <input type="hidden" name="answer_votes" value=0>
+            <input type="submit" name="" value="submit">
+        </form>
+    </body>
+</html>
