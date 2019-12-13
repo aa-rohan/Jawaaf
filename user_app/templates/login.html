@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+    {% block main_content %}
+        <form action="" method="POST">
+            {% csrf_token %}
+        <div class="login text-center">
+        <h1>Login to your account</h1></div><br>
+      Email:<br>
+      <input type="text" class="form-control" name="email">
+      <br>
+      Password:<br>
+      <input type="password" class="form-control" name="pass">
+      <!-- <small><a href="#">Forgot password</a></small> -->
+      <br><br>
+        <button type="submit" name="login" class="btn btn-success">Login</button>
+    </form>
+    {% endblock %}

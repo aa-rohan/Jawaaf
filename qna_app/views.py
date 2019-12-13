@@ -2,15 +2,17 @@ from django.shortcuts import render, redirect
 from .models import QuestionModel, CategoryModel, AnswerModel
 from .forms import QuestionForm, AnswerForm
 from django.http import HttpResponse
-from django.views.generic import CreateView, ListView
 
 # Create your views here.
 
 
 def questionlist(request):
-    questions = QuestionModel.objects.all()
-    questions_dict = {'questions': questions}
-    return render(request, 'questionmodel_list.html', questions_dict)
+    if 'id' in request.session:
+        questions = QuestionModel.objects.all()
+        questions_dict = {'questions': questions}
+        return render(request, 'questionmodel_list.html', questions_dict)
+    else:
+        return redirect('user:login')
 
 
 def popular(request):
@@ -85,5 +87,17 @@ def answer(request, id):
         return render(request, 'answermodel_create.html', c)
 
 
-class QuestionListViews(ListView):
-    queryset = QuestionModel.objects.all()
+def submit(request, id):
+    if request.method == "POST":
+        question = QuestionModel.objects.get(id=id)
+        answer = request.POST.get('answer_desc')
+        Comment = AnswerModel(question=question, answer_desc=answer)
+        Comment.save()
+        return redirect('qna:read')
+
+
+def detail(request, id):
+    return render(request, 'detail.html')
+
+# class QuestionListViews(ListView):
+#     queryset = QuestionModel.objects.all()
